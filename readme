@@ -1,0 +1,21 @@
+源码目录:client_src
+生成库目录:libonvif
+
+#生成静态库：
+g++ -DWITH_DOM -DWITH_OPENSSL -lssl -lcrypto -c dom.cpp duration.c mecevp.c mecevp.h smdevp.c soapAccessRulesBindingProxy.cpp soapActionEngineBindingProxy.cpp soapAdvancedSecurityServiceBindingProxy.cpp soapAuthenticationBehaviorBindingProxy.cpp soapC.cpp soapCredentialBindingProxy.cpp soapDeviceBindingProxy.cpp soapDeviceIOBindingProxy.cpp soapDisplayBindingProxy.cpp soapDoorControlBindingProxy.cpp soapImagingBindingProxy.cpp soapMedia2BindingProxy.cpp soapMediaBindingProxy.cpp soapPACSBindingProxy.cpp soapProvisioningBindingProxy.cpp soapPTZBindingProxy.cpp soapPullPointSubscriptionBindingProxy.cpp soapReceiverBindingProxy.cpp soapRecordingBindingProxy.cpp soapRemoteDiscoveryBindingProxy.cpp soapReplayBindingProxy.cpp soapRuleEngineBindingProxy.cpp soapScheduleBindingProxy.cpp soapSearchBindingProxy.cpp soapThermalBindingProxy.cpp soapUplinkBindingProxy.cpp soapwsddProxy.cpp stdsoap2.cpp threads.c wsaapi.c wsseapi.cpp
+ar -crv libonvif.a dom.o duration.o mecevp.o smdevp.o soapAccessRulesBindingProxy.o soapActionEngineBindingProxy.o soapAdvancedSecurityServiceBindingProxy.o soapAuthenticationBehaviorBindingProxy.o soapC.o soapCredentialBindingProxy.o soapDeviceBindingProxy.o soapDeviceIOBindingProxy.o soapDisplayBindingProxy.o soapDoorControlBindingProxy.o soapImagingBindingProxy.o soapMedia2BindingProxy.o soapMediaBindingProxy.o soapPACSBindingProxy.o soapProvisioningBindingProxy.o soapPTZBindingProxy.o soapPullPointSubscriptionBindingProxy.o soapReceiverBindingProxy.o soapRecordingBindingProxy.o soapRemoteDiscoveryBindingProxy.o soapReplayBindingProxy.o soapRuleEngineBindingProxy.o soapScheduleBindingProxy.o soapSearchBindingProxy.o soapThermalBindingProxy.o soapUplinkBindingProxy.o soapwsddProxy.o stdsoap2.o threads.o wsaapi.o wsseapi.o
+
+#生成动态库：
+g++ -DWITH_DOM -DWITH_OPENSSL -lssl -lcrypto -fPIC -shared -o libonvif.so dom.cpp duration.c mecevp.c mecevp.h smdevp.c soapAccessRulesBindingProxy.cpp soapActionEngineBindingProxy.cpp soapAdvancedSecurityServiceBindingProxy.cpp soapAuthenticationBehaviorBindingProxy.cpp soapC.cpp soapCredentialBindingProxy.cpp soapDeviceBindingProxy.cpp soapDeviceIOBindingProxy.cpp soapDisplayBindingProxy.cpp soapDoorControlBindingProxy.cpp soapImagingBindingProxy.cpp soapMedia2BindingProxy.cpp soapMediaBindingProxy.cpp soapPACSBindingProxy.cpp soapProvisioningBindingProxy.cpp soapPTZBindingProxy.cpp soapPullPointSubscriptionBindingProxy.cpp soapReceiverBindingProxy.cpp soapRecordingBindingProxy.cpp soapRemoteDiscoveryBindingProxy.cpp soapReplayBindingProxy.cpp soapRuleEngineBindingProxy.cpp soapScheduleBindingProxy.cpp soapSearchBindingProxy.cpp soapThermalBindingProxy.cpp soapUplinkBindingProxy.cpp soapwsddProxy.cpp stdsoap2.cpp threads.c wsaapi.c wsseapi.cpp
+
+#静态库例子代码main.cpp：
+1、编译：g++ -o test main.cpp -L./lib -lonvif -lssl -lcrypto -I./include
+2、执行：./test http://192.168.201.96/onvif/device_service admin hik12345
+
+#动态库代码例子main.cpp：
+1、库目录/home/cc/libonvif/lib
+2、配置环境变量： echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/cc/libonvif/lib' >> ~/.bash_profile
+3、编译：g++ -o test main.cpp -L./lib -lonvif -lssl -lcrypto -I./include
+4、执行：./test http://192.168.201.96/onvif/device_service admin hik12345
+  
+
